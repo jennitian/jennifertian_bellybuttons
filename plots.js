@@ -34,3 +34,16 @@ function buildMetadata(sample) {
         PANEL.append("h6").text('WFREQ: ' + result.wfreq);
     });
 }
+
+function buildCharts(sample) {
+    d3.json("samples.json").then((data) => {
+        var bactSamples = data.samples;
+        console.log(bactSamples);
+        var bactArray = bactSamples.filter(sampleObj => sampleObj.id == sample);
+        var result = bactArray[0];
+        var otuID = result.otu_ids;
+        var topTen = otuID.slice(0,10);
+        console.log(topTen);
+
+    });
+}
