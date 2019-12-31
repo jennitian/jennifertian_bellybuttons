@@ -101,14 +101,17 @@ function buildCharts(sample) {
             title: { text: "Belly Button Wash Frequency" },
             type: 'indicator',
             gauge: {
-                axis: {range: [0, 10]},
-                text: ['0-2','2-4','4-6','6-8','8-10'],
+                axis: {
+                    range: [0, 10]
+                },
+                    
+                bar: {thickness: 0},
                 steps: [
-                    { range: [0, 2], color: "rgba(255, 0, 0, 0.6)"},
-                    { range: [2, 4], color: "rgba(255, 165, 0, 0.6)"},
-                    { range: [4, 6], color: "rgba(255, 255, 0, 0.6)"},
-                    { range: [6, 8], color: "rgba(144, 238, 144, 0.6)"},
-                    { range: [8, 10], color: "rgba(154, 205, 50, 0.6)"},
+                    { name: '0-2', range: [0, 2], color: "rgba(255, 0, 0, 0.6)"},
+                    { name: '2-4', range: [2, 4], color: "rgba(255, 165, 0, 0.6)"},
+                    { name: '4-6', range: [4, 6], color: "rgba(255, 255, 0, 0.6)"},
+                    { name: '6-8', range: [6, 8], color: "rgba(144, 238, 144, 0.6)"},
+                    { name: '8-10', range: [8, 10], color: "rgba(154, 205, 50, 0.6)"},
                 ]},
             mode: "gauge+number"
             }]
@@ -117,37 +120,32 @@ function buildCharts(sample) {
             hole: 0.4,
             rotation: 90,
             values: wfreq,
-            text: ['0-2','2-4','4-6','6-8','8-10'],
+            text: ['0-1','1-2','2-3','3-4','4-5','5-6','6-7','7-8','8-9'],
             direction: "clockwise",
             textinfo: "text",
             textposition: "inside",
             marker: {
-            colors: ["rgba(255, 0, 0, 0.6)", "rgba(255, 165, 0, 0.6)", "rgba(255, 255, 0, 0.6)", "rgba(144, 238, 144, 0.6)", "rgba(154, 205, 50, 0.6)", "white"]
-            },
-            labels: ['0-2','2-4','4-6','6-8','8-10'],
-            hoverinfo: "label"
-            }]
-        var degrees = 115, radius = .6;
-        var radians = degrees * Math.PI / 180;
-        var x = -1 * radius * Math.cos(radians);
-        var y = radius * Math.sin(radians);
+                color: ['rgb(93, 164, 214)', 'rgb(255, 144, 14)',  'rgb(44, 160, 101)', 'rgb(255, 65, 54)', 'rgb(31, 119, 180)', 'rgb(255, 127, 14)', 'rgb(44, 160, 44)', 'rgb(214, 39, 40)', 'rgb(148, 103, 189)', 'white'],
+                labels: ['0-1','1-2','2-3','3-4','4-5','5-6','6-7','7-8','8-9']}
+            }];
+        // needle
+        var degrees = 50, radius = .9
+        var radians = degrees * Math.PI / 180
+        var x = -1 * radius * Math.cos(radians)
+        var y = radius * Math.sin(radians)
 
         var layoutGauge = {
-        shapes:[{
-            type: 'line',
-            x0: 0,
-            y0: 0,
-            x1: x,
-            y1: 0.5,
-            line: {
+            shapes: [{
+              type: 'line',
+              x0: 0.5,
+              y0: 0.5,
+              x1: 0.6,
+              y1: 0.6,
+              line: {
                 color: 'black',
-                width: 8
-            }
-            }],
-        title: 'Washing Frequency',
-        xaxis: {visible: false, range: [-1, 1]},
-        yaxis: {visible: false, range: [-1, 1]}
-        };*/
+                width: 3}}],
+            title: 'Chart'
+          };*/
 
 
         Plotly.newPlot("bar", [traceBar], layoutBar);
