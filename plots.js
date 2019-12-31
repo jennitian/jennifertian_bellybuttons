@@ -42,12 +42,12 @@ function buildMetadata(sample) {
 
 function buildCharts(sample) {
     d3.json("samples.json").then((data) => {
-        //extract wash freq.
+        //extract wash freq from metadata
         var metadata = data.metadata;
         var resultArray = metadata.filter(sampleObj => sampleObj.id == sample);
         var firstResult = resultArray[0];
         var wfreq = firstResult.wfreq
-        //extract bacterial samples
+        //extract otuid and samplevalues from bacterial samples
         var bactSamples = data.samples;
         console.log(bactSamples);
         var bactArray = bactSamples.filter(sampleObj => sampleObj.id == sample);
@@ -57,36 +57,41 @@ function buildCharts(sample) {
         var topOtuIDs = otuID.slice(0,10);
         var topSampleValues = sampleValues.slice(0,10);
         console.log(topSampleValues);
-        /*otuIDlabels = topOtuIDs.forEach(label => 
-            label = ('OTU: ' + label));
-        console.log(otuIDlabels)*/
+        var otuLabels = []
+        otuID.forEach(ID => {
+            label = ('OTU: ' + ID)
+            otuLabels.push(label)
+            });
+        topOtuLabels = otuLabels.slice(0,10)
+        console.log(otuLabels)
         // test otuid labels using console log?
         //creating graphs
         var traceBar = {
             x: topSampleValues,
-            y: topOtuIDs,
+            y: topOtuLabels,
             type: 'bar',
             orientation: 'h',
-            text: topOtuIDs
+            text: topOtuLabels
         };
 
         var layoutBar = {
             title: 'Top Bacterial Species Found',
             xaxis: {title: 'Sample Value'},
             yaxis: {
-                title: 'OTU ID',
                 type: 'category',
                 autorange: 'reversed'}
         };
 
         var traceBubble = {
-            x: topOtuIDs,
-            y: topSampleValues,
+            x: otuID,
+            y: sampleValues,
             mode: 'markers',
             marker: {
                 size: sampleValues,
-                color: ['rgb(93, 164, 214)', 'rgb(255, 144, 14)',  'rgb(44, 160, 101)', 'rgb(255, 65, 54)', 'rgb(31, 119, 180)', 'rgb(255, 127, 14)', 'rgb(44, 160, 44)', 'rgb(214, 39, 40)', 'rgb(148, 103, 189)', 'rgb(140, 86, 75)'],},
-            text: topOtuIDs
+                color: topOtuIDs
+                //color: ['rgb(93, 164, 214)', 'rgb(255, 144, 14)',  'rgb(44, 160, 101)', 'rgb(255, 65, 54)', 'rgb(31, 119, 180)', 'rgb(255, 127, 14)', 'rgb(44, 160, 44)', 'rgb(214, 39, 40)', 'rgb(148, 103, 189)', 'rgb(140, 86, 75)']
+            },
+            text: otuLabels
         }
 
         var layoutBubble = {
