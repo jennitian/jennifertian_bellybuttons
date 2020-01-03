@@ -87,7 +87,6 @@ function buildCharts(sample) {
             marker: {
                 size: sampleValues,
                 color: otuID
-                //color: ['rgb(93, 164, 214)', 'rgb(255, 144, 14)',  'rgb(44, 160, 101)', 'rgb(255, 65, 54)', 'rgb(31, 119, 180)', 'rgb(255, 127, 14)', 'rgb(44, 160, 44)', 'rgb(214, 39, 40)', 'rgb(148, 103, 189)', 'rgb(140, 86, 75)']
             },
             text: otuLabels
         }
@@ -118,46 +117,6 @@ function buildCharts(sample) {
                 ]},
             mode: "gauge+number"
             }]
-            /*type: "pie",
-            showlegend: false,
-            hole: 0.4,
-            rotation: 90,
-            values: wfreq,
-            text: ['0-2','2-4','4-6','6-8','8-10', ''],
-            direction: "clockwise",
-            textinfo: "text",
-            textposition: "inside",
-            marker: {
-                color: ["rgba(255, 0, 0, 0.6)", "rgba(255, 165, 0, 0.6)", "rgba(255, 255, 0, 0.6)", "rgba(144, 238, 144, 0.6)", "rgba(154, 205, 50, 0.6)", "white"],
-                //color: ['rgb(93, 164, 214)', 'rgb(255, 144, 14)',  'rgb(44, 160, 101)', 'rgb(255, 65, 54)', 'rgb(31, 119, 180)', 'rgb(255, 127, 14)', 'rgb(44, 160, 44)', 'rgb(214, 39, 40)', 'rgb(148, 103, 189)', 'white'],
-                
-            },
-            label: ['0-2','2-4','4-6','6-8','8-10', ''],
-            hoverinfo: "label"
-                
-            }];
-        // needle
-        var degrees = 115, radius = .6;
-        var radians = degrees * Math.PI / 180;
-        var x = -1 * radius * Math.cos(radians);
-        var y = radius * Math.sin(radians);
- 
-        var layoutGauge = {
-            shapes:[{
-                type: 'line',
-                x0: 0,
-                y0: 0,
-                x1: x,
-                y1: 0.5,
-                line: {
-                  color: 'black',
-                  width: 8
-                }
-              }],
-            title: 'Belly Button Wash Frequency',
-            xaxis: {visible: false, range: [-1, 1]},
-            yaxis: {visible: false, range: [-1, 1]}
-          };*/
 
         Plotly.newPlot("bar", [traceBar], layoutBar);
 
